@@ -4,9 +4,9 @@
             <div class="header-logo">
                 <img src="../assets/img/netflix_logo.png" alt="netflix-logo">
             </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <input class="form-control" type="text">
-                <button class="btn btn-danger ldg-btn">Cerca</button>
+            <div class="d-flex justify-content-between align-items-center ldg-search">
+                <input class="form-control" type="text" v-model="store.options.params.query" @keyup.enter="$emit('searchMovie'), $emit('searchTv')">
+                <button class="btn btn-danger ldg-btn" @click="$emit('searchMovie'), $emit('searchTv')">Cerca</button>
             </div>
         </div>
     </header>
@@ -15,7 +15,12 @@
 <script>
     import {store} from '../store.js';
     export default {
-        name: 'HeaderComponent'
+        name: 'HeaderComponent',
+        data() {
+            return {
+                store
+            }
+        },
     }
 </script>
 
@@ -34,8 +39,13 @@
         }
     }
 
+    .ldg-search{
+        padding: 10px;
+    }
+
     .ldg-btn{
         color: $black;
         margin-left: 10px;
+        background-color: $red;
     }
 </style>

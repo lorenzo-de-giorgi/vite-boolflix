@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />
+  <HeaderComponent @searchMovie="getMovies" @searchTv="getTvSeries" />
   <MainComponent />
 </template>
 
@@ -22,12 +22,12 @@
     methods: {
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options).then((res) => {
-          console.log(res.data.results)
+          this.store.movieList = res.data.results;
         })
       },
       getTvSeries(){
         axios.get(this.store.apiUrl + this.store.endPoint.tv, this.store.options).then((res) => {
-          console.log(res.data.results)
+          this.store.tvList = res.data.results;
         })
       },
     },
