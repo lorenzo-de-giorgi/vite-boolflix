@@ -1,10 +1,10 @@
 <template>
-    header
+    main
 </template>
 
 <script>
     export default {
-        name: 'HeaderComponent'
+        name: 'MainComponent'
     }
 </script>
 
