@@ -5,7 +5,7 @@
                 <img src="../assets/img/netflix_logo.png" alt="netflix-logo">
             </div>
             <div class="d-flex justify-content-between align-items-center">
-                <input class="form-control" type="text" @change="$emit('statusSearch')" v-model="store.options.params.query">
+                <input class="form-control" type="text">
                 <button class="btn btn-danger ldg-btn">Cerca</button>
             </div>
         </div>

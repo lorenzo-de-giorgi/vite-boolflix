@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @statusSearch="setParams"v />
+  <HeaderComponent />
   <MainComponent />
 </template>
 
