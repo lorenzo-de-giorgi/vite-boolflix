@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent />
+  <HeaderComponent @statusSearch="setParams"v />
   <MainComponent />
 </template>
 
@@ -39,5 +39,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+  
 </style>
