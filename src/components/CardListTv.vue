@@ -10,8 +10,9 @@
                         <div class="flip-card-back">
                             <h1>Titolo: {{ tv.name }}</h1>
                             <p>Titolo Originale: {{ tv.original_name }}</p>
-                            <p>Lingua Originale: {{ tv.original_language }}</p>
-                            <p>Voto: {{ tv.vote_average }}</p>
+                            <p class="text-center" :class="tv.original_language === 'en' ? 'fi fi-gb'  : tv.original_language === 'ko' ? 'fi fi-kr': tv.original_language === 'ja' ? 'fi fi-jp' : `fi fi-${tv.original_language}`"></p>
+                            <br>
+                            <p class="pb-4" v-for="index in 5" :class="voteToStar(index, fixVote(tv.vote_average))"></p>
                         </div>
                     </div>
                 </div>
@@ -32,12 +33,25 @@ import CardComponent from './CardComponent.vue';
             return{
                 store
             }
-        }
+        },
+        methods: {
+            fixVote(vote) {
+                return Math.ceil(vote / 2);
+            },
+            voteToStar(index, vote){
+                if(index <= vote){
+                    return 'fa-solid fa-star'
+                } else {
+                    return 'fa-regular fa-star'
+                }
+            }
+        },
     }
 </script>
 
 <style lang="scss" scoped>
     @use '../assets/styles/partials/variables' as *;
+    @import "/node_modules/flag-icons/css/flag-icons.min.css";
     .ldg-container{
         width: 100%;
         display: flex;
