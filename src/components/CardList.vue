@@ -1,18 +1,21 @@
 <template>  
     <div class="container">
         <div class="ldg-container">
-            <div class="col-12 col-md-6 col-lg-3 ldg-card" v-for="tv in store.tvList">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <CardComponent :image="store.imgUrl + tv.backdrop_path"/>
-                        </div>
-                        <div class="flip-card-back">
-                            <h1>Titolo: {{ tv.name }}</h1>
-                            <p>Titolo Originale: {{ tv.original_name }}</p>
-                            <p class="text-center" :class="tv.original_language === 'en' ? 'fi fi-gb'  : tv.original_language === 'ko' ? 'fi fi-kr': tv.original_language === 'ja' ? 'fi fi-jp' : `fi fi-${tv.original_language}`"></p>
-                            <br>
-                            <p class="pb-4" v-for="index in 5" :class="voteToStar(index, fixVote(tv.vote_average))"></p>
+            <h2>{{ title }}</h2>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3 ldg-card" v-for="(item, index) in list" :key="item.id">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <CardComponent :image="store.imgUrl + item.backdrop_path"/>
+                            </div>
+                            <div class="flip-card-back">
+                                <h1>Titolo: {{ item.title || item.name }}</h1>
+                                <p>Titolo Originale: {{ item.original_title || item.original_name }}</p>
+                                <p class="text-center" :class="item.original_language === 'en' ? 'fi fi-gb'  : item.original_language === 'ko' ? 'fi fi-kr': item.original_language === 'ja' ? 'fi fi-jp' : `fi fi-${item.original_language}`"></p>
+                                <br>
+                                <p class="pb-4" v-for="index in 5" :class="voteToStar(index, fixVote(item.vote_average))"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,9 +28,13 @@
 import { store } from '../store.js';
 import CardComponent from './CardComponent.vue';
     export default {
-        name: 'CardListTv',
+        name: 'CardListMovie',
         components:{
             CardComponent,
+        },
+        props: {
+            title: String,
+            list: Array
         },
         data(){
             return{
@@ -52,6 +59,7 @@ import CardComponent from './CardComponent.vue';
 <style lang="scss" scoped>
     @use '../assets/styles/partials/variables' as *;
     @import "/node_modules/flag-icons/css/flag-icons.min.css";
+
     .ldg-container{
         width: 100%;
         display: flex;
@@ -91,17 +99,18 @@ import CardComponent from './CardComponent.vue';
 
     .flip-card-back {
         background-color: $black;
-        color: white;
+        color: $white;
         transform: rotateY(180deg);
     }
 
     h1{
-        font-size: 18px;
+        font-size: 19px;
         color: $red;
     }
 
     p{
         font-size: 13px;
     }
+
 
 </style>

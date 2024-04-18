@@ -2,11 +2,11 @@
     <header>
         <div class="d-flex justify-content-between align-items-center">
             <div class="header-logo">
-                <img src="../assets/img/netflix_logo.png" alt="netflix-logo">
+                <img src="/images/netflix_logo.png" alt="netflix-logo">
             </div>
             <div class="d-flex justify-content-between align-items-center ldg-search">
-                <input class="form-control" type="text" v-model="store.options.params.query" @keyup.enter="$emit('searchMovie'), $emit('searchTv')">
-                <button class="btn btn-danger ldg-btn" @click="$emit('searchMovie'), $emit('searchTv')">Cerca</button>
+                <input class="form-control" type="text" v-model.trim="store.options.params.query" @keyup.enter="searchMedia">
+                <button class="btn btn-danger ldg-btn" @click="searchMedia"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </header>
@@ -21,6 +21,11 @@
                 store
             }
         },
+        methods: {
+            searchMedia() {
+                this.$emit('searchMedia')
+            }
+        },
     }
 </script>
 
@@ -29,6 +34,9 @@
 
     header{
         background-color: $black;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
     }
 
     .header-logo{

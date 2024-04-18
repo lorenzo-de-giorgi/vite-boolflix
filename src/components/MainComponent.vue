@@ -1,23 +1,29 @@
 <template>
-    <h2>Lista Film</h2>
-    <CardListMovie />
-
-    <h2>Lista Serie TV</h2>
-    <CardListTv />
+    <main>
+        <CardList title="Movies" :list="store.movieList" />
+        <CardList title="Tv Series" :list="store.tvList" />
+    </main>
 </template>
 
 <script>
-    import CardListMovie from './CardListMovie.vue';
-    import CardListTv from './CardListTv.vue';
+    import { store } from '../store.js';
+    import CardList from './CardList.vue';
     export default {
         name: 'MainComponent',
         components: {
-            CardListMovie,
-            CardListTv
-        }
+            CardList
+        },
+        data() {
+            return {
+                store
+            }
+        },
     }
 </script>
 
 <style lang="scss" scoped>
-    
+
+    main{
+        padding-top: 90px;
+    }
 </style>

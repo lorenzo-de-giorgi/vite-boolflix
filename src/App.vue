@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @searchMovie="getMovies" @searchTv="getTvSeries" />
+  <HeaderComponent @searchMedia="getMedia" />
   <MainComponent />
 </template>
 
@@ -20,6 +20,12 @@
       }
     },
     methods: {
+      getMedia(){
+        if(this.store.options.params.query){
+          this.getMovies();
+          this.getTvSeries();
+        }
+      },
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options).then((res) => {
           this.store.movieList = res.data.results;
@@ -32,8 +38,7 @@
       },
     },
     created() {
-      this.getMovies();
-      this.getTvSeries();
+
     },
   }
 </script>
