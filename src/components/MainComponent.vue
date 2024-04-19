@@ -4,7 +4,7 @@
         <div class="hero" v-if="store.options.params.query == ''">
             <video src="/images/Creed3-Trailer.mp4" autoplay muted loop></video>
         </div>
-        <a class="button-popular" href="#popular"><i class="fa-solid fa-arrow-down"></i></a>
+        <a class="button-popular" href="#popular" v-if="store.options.params.query == ''"><i class="fa-solid fa-arrow-down"></i></a>
         <div id="popular" class="main" v-if="!store.loading">
             <CardList class="ldg-margin" v-if="store.options.params.query == ''" title="Film Popolari" :list="store.popularMovie" />
             <CardList class="ldg-margin" v-if="store.options.params.query == ''" title="Serie Tv Popolari" :list="store.popularTv" />
@@ -47,7 +47,7 @@
 
     .button-popular{
         position: absolute;
-        top: 800px;
+        top: 85%;
         z-index: 1000;
         right: 20px;
         text-decoration: none;
