@@ -36,13 +36,20 @@
           this.store.tvList = res.data.results;
         })
       },
+      getPopularMovie(){
+        axios.get(this.store.apiUrl + this.store.endPoint.popularMovie, this.store.options).then((res) => {
+          this.store.popularMovie = res.data.results;
+        })
+      }
     },
     created() {
-
+      this.getPopularMovie()
     },
   }
 </script>
 
 <style lang="scss" scoped>
-  
+  .bg-black{
+    background-color: black;
+  }
 </style>

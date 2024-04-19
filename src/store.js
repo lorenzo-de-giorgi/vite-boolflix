@@ -5,6 +5,8 @@ export const store = reactive({
     endPoint: {
         movie: 'search/movie',
         tv: 'search/tv',
+        popularMovie: 'movie/popular',
+        popularTv: 'tv/popular'
     },
     options: {
         params: {
@@ -14,5 +16,6 @@ export const store = reactive({
     },
     imgUrl: 'https://image.tmdb.org/t/p/original',
     movieList: [],
-    tvList: []
+    tvList: [],
+    popularMovie: []
 })
