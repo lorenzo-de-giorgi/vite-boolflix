@@ -3,8 +3,8 @@
         <div class="alert alert-danger" v-if="store.error.message">{{ store.error.message }}</div>
         <div v-if="!store.loading">
             <CardList v-if="store.options.params.query == ''" title="Film Popolari" :list="store.popularMovie" />
-            <CardList title="Movies" :list="store.movieList" />
-            <CardList title="Tv Series" :list="store.tvList" />
+            <CardList title="Movies" :list="store.movieList" v-if="store.options.params.query != ''" />
+            <CardList title="Tv Series" :list="store.tvList" v-if="store.options.params.query != ''" />
         </div>
         <div v-else>
             <ApiLoader />

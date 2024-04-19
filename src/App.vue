@@ -36,8 +36,8 @@
               this.store.loading = false;
             }, 3000)
           })
-          this.getMovies().then(res);
-          this.getTvSeries().then(res);
+          this.getMovies();
+          this.getTvSeries();
         }
       },
       getMovies(){
