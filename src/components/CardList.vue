@@ -7,7 +7,8 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <CardComponent :image="store.imgUrl + item.backdrop_path"/>
+                                <CardComponent v-if="item.backdrop_path != null" :image="store.imgUrl + item.backdrop_path"/>
+                                <img v-else src="../assets/img/back-drop.jpg" alt="">
                             </div>
                             <div class="flip-card-back">
                                 <h1>Titolo: {{ item.title || item.name }}</h1>
@@ -25,12 +26,14 @@
 </template>
 
 <script>
-import { store } from '../store.js';
-import CardComponent from './CardComponent.vue';
+    import { store } from '../store.js';
+    import CardComponent from './CardComponent.vue';
+    import ApiLoader from './ApiLoader.vue';
     export default {
         name: 'CardListMovie',
         components:{
             CardComponent,
+            ApiLoader
         },
         props: {
             title: String,
@@ -51,7 +54,7 @@ import CardComponent from './CardComponent.vue';
                 } else {
                     return 'fa-regular fa-star'
                 }
-            }
+            },
         },
     }
 </script>
@@ -59,6 +62,10 @@ import CardComponent from './CardComponent.vue';
 <style lang="scss" scoped>
     @use '../assets/styles/partials/variables' as *;
     @import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+    img{
+        width: 300px;
+    }
 
     .ldg-container{
         width: 100%;
