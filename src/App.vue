@@ -22,19 +22,29 @@
     methods: {
       getMedia(){
         if(this.store.options.params.query){
-          this.getMovies();
-          this.getTvSeries();
+          this.store.loading = true;
+          this.store.error.message = '';
+          Promise.all([this.getMovies(), this.getTvSeries()]).then((res) => {
+            this.store.movieList = res[0].data.results;
+            this.store.tvList = res[1].data.results;
+          }).catch((error) => {
+            console.log(error);
+            this.store.error.message = error.message;
+          }).finally(() => {
+            console.log('finally');
+            setTimeout(() => {
+              this.store.loading = false;
+            }, 3000)
+          })
+          this.getMovies().then(res);
+          this.getTvSeries().then(res);
         }
       },
       getMovies(){
-        axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options).then((res) => {
-          this.store.movieList = res.data.results;
-        })
+        return axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options)
       },
       getTvSeries(){
-        axios.get(this.store.apiUrl + this.store.endPoint.tv, this.store.options).then((res) => {
-          this.store.tvList = res.data.results;
-        })
+        return axios.get(this.store.apiUrl + this.store.endPoint.tv, this.store.options)
       },
       getPopularMovie(){
         axios.get(this.store.apiUrl + this.store.endPoint.popularMovie, this.store.options).then((res) => {
