@@ -18,6 +18,7 @@ export const store = reactive({
     movieList: [],
     tvList: [],
     popularMovie: [],
+    popularTv: [],
     error: {
         message: ''
     },

@@ -50,10 +50,16 @@
         axios.get(this.store.apiUrl + this.store.endPoint.popularMovie, this.store.options).then((res) => {
           this.store.popularMovie = res.data.results;
         })
+      },
+      getPopularTv(){
+        axios.get(this.store.apiUrl + this.store.endPoint.popularTv, this.store.options).then((res) => {
+          this.store.popularTv = res.data.results;
+        })
       }
     },
     created() {
-      this.getPopularMovie()
+      this.getPopularMovie();
+      this.getPopularTv();
     },
   }
 </script>
